@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="Admin_WALL_E.View.MonitoringView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:Admin_WALL_E.ViewModel"
+             xmlns:local="clr-namespace:Admin_WALL_E.View"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <vm:MonitoringVM />
+    </UserControl.DataContext>
+
+    <Border CornerRadius="5"
+            BorderThickness=".5"
+            BorderBrush="Gray"
+            Background="White">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height=".5*" />
+                <RowDefinition Height=".25*" />
+            </Grid.RowDefinitions>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                
+                <TextBlock Text="{Binding Info}"
+                           Margin="10"
+                           Background="Black"
+                           Foreground="Blue"
+                           TextWrapping="Wrap"
+                           Padding="20" />
+            </ScrollViewer>
+
+            <ScrollViewer Grid.Row="1"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                
+                <TextBlock Text="{Binding Error}"
+                           Margin="10"
+                           Background="Black"
+                           Foreground="Red"
+                           TextWrapping="Wrap"
+                           Padding="20" />
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal">
+
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin"
+                                Value="20 10" />
+                        <Setter Property="FontSize"
+                                Value="18" />
+                        <Setter Property="FontWeight"
+                                Value="Bold" />
+                        <Setter Property="Cursor"
+                                Value="Hand" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button Content="Clear API info"
+                        Command="{Binding ClearAPIInfo}"/>
+                
+                <Button Content="Clear Errors"
+                        Command="{Binding ClearErrors}" />
+                
+                <Button Content="Log Errors"
+                        Command="{Binding LogErrors}" />
+            </StackPanel>
+        </Grid>
+
+    </Border>
+</UserControl>

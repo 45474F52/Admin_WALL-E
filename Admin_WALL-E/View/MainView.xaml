@@ -1,0 +1,117 @@
+﻿<Window x:Class="Admin_WALL_E.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Admin_WALL_E.ViewModel"
+        xmlns:local="clr-namespace:Admin_WALL_E.View"
+        mc:Ignorable="d"
+        Title="WALL-E"
+        Height="450"
+        Width="800"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Window.DataContext>
+        <vm:MainVM />
+    </Window.DataContext>
+
+    <Grid Background="#e2e2e2">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1"
+              Background="White">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{Binding Status}"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Padding="20 0 0 0"/>
+
+            <StackPanel Grid.Column="1">
+                <DockPanel LastChildFill="False"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Right">
+
+                    <Button Margin="0 10 20 0"
+                            Width="25"
+                            Height="25"
+                            Click="HideWindow_Click"
+                            Style="{StaticResource WindowButton}">
+
+                        <Button.Content>
+                            <TextBlock Text="—"
+                                       FontWeight="Bold"
+                                       FontSize="16" />
+                        </Button.Content>
+                    </Button>
+
+                    <Button Margin="0 10 10 0"
+                            Width="25"
+                            Height="25"
+                            Click="ExitApp_Click"
+                            Style="{StaticResource WindowButton}">
+
+                        <Button.Content>
+                            <TextBlock Text="✕"
+                                       FontWeight="Bold"
+                                       FontSize="16" />
+                        </Button.Content>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+
+        <Rectangle Grid.RowSpan="2"
+                   Fill="#1d1d1b" />
+
+        <TextBlock Text="WALL-E"
+                   FontSize="22"
+                   FontWeight="Bold"
+                   Foreground="#e77d07"
+                   TextDecorations="Underline"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+
+        <StackPanel Grid.Row="1">
+            <RadioButton Content="Home"
+                         Height="50"
+                         Foreground="White"
+                         FontSize="16"
+                         Style="{StaticResource MenuRadioButtonTheme}"
+                         IsChecked="True"
+                         Command="{Binding GoToHome}" />
+
+            <RadioButton Content="Monitoring"
+                         Height="50"
+                         Foreground="White"
+                         FontSize="16"
+                         Style="{StaticResource MenuRadioButtonTheme}"
+                         Command="{Binding GoToMonitoring}" />
+        </StackPanel>
+
+        <ContentControl Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="30"
+                        Content="{Binding CurrentView}">
+
+        </ContentControl>
+
+    </Grid>
+</Window>
